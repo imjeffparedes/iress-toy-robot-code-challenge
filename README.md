@@ -75,7 +75,7 @@ python src/game.py
 ```
 or Run set of commands from file using the following script.
 ```bash
-python src/commands.txt 
+python src/game.py src/commands.txt 
 ```
 
 ## Example
