@@ -48,3 +48,44 @@ MOVE
 MOVE
 LEFT
 ```
+
+
+## Run 
+
+### Option 1 - Local machine
+1. Download and install Python 3 [here](https://www.python.org/downloads)
+2. Download the repository
+3. Extract the downloaded zip file
+4. Open folder `iress-toy-robot-code-challenge/` in Terminal or Command Prompt
+5. Run the simualtion by running the following script
+```bash
+python src/game.py 
+```
+
+### Option 2 - Remote Container
+1. Download and install Docker Desktop [here](https://www.docker.com/products/docker-desktop)
+2. Download Visual Studio Code [here](https://code.visualstudio.com/download)
+3. Download the repository
+4. Extract the downloaded zip file
+5. Open folder `iress-toy-robot-code-challenge/` in Visual Studio Code
+6. Open project in Dev Container: click the green button in the bottom left corner of VS Code
+7. Run the simualtion by running the following script in Workspace Terminal
+```bash
+python src/game.py 
+```
+
+## Example
+```
+python src/game.py 
+PLACE 0,0,EAST
+MOVE
+MOVE
+LEFT
+REPORT
+Output: 2,0,NORTH
+MOVE
+MOVE
+RIGHT
+REPORT
+Output: 2,2,EAST
+```
