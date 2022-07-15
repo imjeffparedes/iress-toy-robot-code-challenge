@@ -1,34 +1,10 @@
 '''
 The application is a simulation of a toy robot moving on a square table top
 '''
-
+import sys
 KEYWORDS = ('PLACE', 'MOVE', 'LEFT', 'RIGHT', 'REPORT')
 DIRECTIONS = ('NORTH', 'EAST', 'SOUTH', 'WEST')
 TABLE_DIMENSIONS = (5, 5)
-
-
-def get_place_args(command: str) -> tuple:
-    parameters = command.split(',')
-    x = int(parameters[0])
-    y = int(parameters[1])
-    direction = parameters[2]
-    return (x,y) , direction
-
-
-def get_input() -> tuple:
-    command = input().strip()
-    keyword = command.split(' ')[0]
-    position = None
-    direction = None
-    if keyword not in KEYWORDS:
-        keyword = False
-    if keyword == 'PLACE':
-        place_parameters = get_place_args(command[6:])
-        position = place_parameters[0]
-        direction = place_parameters[1]
-        if direction not in DIRECTIONS:
-            keyword = False
-    return keyword, position, direction
 
 
 class Stage:
@@ -145,35 +121,79 @@ class Stage:
 
         return result
 
+
+def get_place_args(command: str) -> tuple:
+    parameters = command.split(',')
+    x = int(parameters[0])
+    y = int(parameters[1])
+    direction = parameters[2]
+    return (x,y) , direction
+
+
+def parse_input(command: str) -> tuple:
+    keyword = command.split(' ')[0]
+    position = None
+    direction = None
+    if keyword not in KEYWORDS:
+        keyword = False
+    if keyword == 'PLACE':
+        place_parameters = get_place_args(command[6:])
+        position = place_parameters[0]
+        direction = place_parameters[1]
+        if direction not in DIRECTIONS:
+            keyword = False
+    return keyword, position, direction
+
+
+def process_input(parameters: tuple):
+    keyword = parameters[0]
+    if keyword == 'PLACE':
+        position = parameters[1]
+        direction = parameters[2]
+        stage.place(position, direction)
+    elif stage.placed is False:
+        return
+    elif keyword == 'MOVE':
+        stage.move()
+    elif keyword == 'LEFT':
+        stage.left()
+    elif keyword == 'RIGHT':
+        stage.right()
+    elif keyword == 'REPORT':
+        stage.report()
+
+
+
 ## MAIN APPLICATION
+
 stage = Stage()
 
-def main():
-    '''Run the Toy Robot simulation
+def read_file_input():
+    '''Read all commands per line
     '''
     try:
-        keyword = None
-        while True:
-            parameters = get_input()
-            keyword = parameters[0]
+        with open(sys.argv[1], 'r') as lines:
+            for command in lines:
+                command = command.strip().rstrip()
+                print(command)
+                parameters = parse_input(command)
+                process_input(parameters)
+    except Exception:
+        return
 
-            if keyword == 'PLACE':
-                position = parameters[1]
-                direction = parameters[2]
-                stage.place(position, direction)
-            elif stage.placed is False:
-                continue
-            elif keyword == 'MOVE':
-                stage.move()
-            elif keyword == 'LEFT':
-                stage.left()
-            elif keyword == 'RIGHT':
-                stage.right()
-            elif keyword == 'REPORT':
-                stage.report()
-    except:
-        main()
+
+def read_standard_input():
+    try:
+        while True:
+            command = input().strip()
+            parameters = parse_input(command)
+            process_input(parameters)
+    except Exception:
+        read_standard_input()
 
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) != 1:
+        read_file_input()
+    else:
+        read_standard_input()
