@@ -33,3 +33,8 @@ def get_input() -> tuple:
     return keyword, position, direction
 
 
+class Stage:
+    ''' Simulate stage or square table top
+    '''
+    def __init__(self) -> None:
+        '''Initiate needed parameters'''
