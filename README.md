@@ -89,3 +89,5 @@ RIGHT
 REPORT
 Output: 2,2,EAST
 ```
+
+Terminate the application by doing `Ctrl + Z`
