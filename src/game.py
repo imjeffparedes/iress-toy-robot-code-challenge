@@ -147,3 +147,39 @@ class Stage:
         print(result)
 
         return result
+
+## MAIN APPLICATION
+stage = Stage()
+
+def main():
+    '''Run the Toy Robot simulation
+    It is required that the first command to the robot is a PLACE command,
+    after that, any sequence of commands may be issued,
+    in any order, including another PLACE command'''
+    try:
+        keyword = None
+        while True:
+            parameters = get_input()
+            keyword = parameters[0]
+
+            if keyword == 'PLACE':
+                position = parameters[1]
+                direction = parameters[2]
+                stage.place(position, direction)
+            elif stage.placed is False:
+                continue
+            elif keyword == 'MOVE':
+                stage.move()
+            elif keyword == 'LEFT':
+                stage.left()
+            elif keyword == 'RIGHT':
+                stage.right()
+            elif keyword == 'REPORT':
+                stage.report()
+    except Exception as error:
+        print(error)
+        main()
+
+
+if __name__ == '__main__':
+    main()
