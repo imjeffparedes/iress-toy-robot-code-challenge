@@ -5,7 +5,7 @@
 import sys
 import os
 sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/../src"))
-from game import Stage
+from stage import Stage
 
 
 class TestStageClass():
