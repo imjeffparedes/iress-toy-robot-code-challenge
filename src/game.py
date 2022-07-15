@@ -5,8 +5,6 @@ The application is a simulation of a toy robot moving on a square table top
 KEYWORDS = ('PLACE', 'MOVE', 'LEFT', 'RIGHT', 'REPORT')
 DIRECTIONS = ('NORTH', 'EAST', 'SOUTH', 'WEST')
 TABLE_DIMENSIONS = (5, 5)
-X_DIRECTIONS = ('NORTH', 'SOUTH')
-Y_DIRECTIONS = ('EAST', 'WEST')
 
 
 def get_place_args(command: str) -> tuple:
@@ -49,15 +47,12 @@ class Stage:
         '''Any movement that would result in the robot falling from the table
         must be prevented, however further valid movement commands must still be allowed.
         '''
-        print(position)
         x = position[0]
         y = position[1]
         table_width = TABLE_DIMENSIONS[0]
         table_height = TABLE_DIMENSIONS[1]
         if (x < 0 or x > table_height) or (y < 0 or y > table_width):
-            print('out of boundaries')
             return True
-        print('within boundaries')
         return False
 
 
@@ -77,7 +72,7 @@ class Stage:
         '''MOVE will move the toy robot one unit
         forward in the direction it is currently facing.'''
         if self.placed is False:
-            print('Ignored')
+            return
 
         x = self.current_position[0]
         y = self.current_position[1]
@@ -104,7 +99,8 @@ class Stage:
         '''LEFT will rotate the robot 90 degrees in the specified direction
         without changing the position of the robot.'''
         if self.placed is False:
-            print('Ignored')
+            return
+
         direction_index = DIRECTIONS.index(self.current_direction)
         new_direction_index = direction_index - 1
 
@@ -121,7 +117,7 @@ class Stage:
         '''RIGHT will rotate the robot 90 degrees in the specified direction
         without changing the position of the robot.'''
         if self.placed is False:
-            print('Ignored')
+            return
 
         direction_index = DIRECTIONS.index(self.current_direction)
         new_direction_index = direction_index + 1
@@ -139,7 +135,8 @@ class Stage:
         '''REPORT will announce the X,Y and F of the robot.
         This can be in any form, but standard output is sufficient. '''
         if self.placed is False:
-            print('Ignored')
+            return
+
         x = self.current_position[0]
         y = self.current_position[1]
 
@@ -153,9 +150,7 @@ stage = Stage()
 
 def main():
     '''Run the Toy Robot simulation
-    It is required that the first command to the robot is a PLACE command,
-    after that, any sequence of commands may be issued,
-    in any order, including another PLACE command'''
+    '''
     try:
         keyword = None
         while True:
@@ -176,8 +171,7 @@ def main():
                 stage.right()
             elif keyword == 'REPORT':
                 stage.report()
-    except Exception as error:
-        print(error)
+    except:
         main()
 
 
