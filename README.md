@@ -91,3 +91,13 @@ Output: 2,2,EAST
 ```
 
 Terminate the application by doing `Ctrl + Z`
+
+
+
+## Test Case
+
+Initiate the test case by running the following script in Workspace Terminal
+```bash
+pytest tests/
+```
+
