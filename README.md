@@ -73,6 +73,10 @@ python src/game.py
 ```bash
 python src/game.py 
 ```
+or Run set of commands from file using the following script.
+```bash
+python src/commands.txt 
+```
 
 ## Example
 ```
@@ -88,6 +92,16 @@ MOVE
 RIGHT
 REPORT
 Output: 2,2,EAST
+```
+
+```
+python src/game.py src/commands.txt 
+PLACE 0,0,EAST
+MOVE
+MOVE
+LEFT
+REPORT
+Output: 2,0,NORTH
 ```
 
 Terminate the application by doing `Ctrl + Z`
