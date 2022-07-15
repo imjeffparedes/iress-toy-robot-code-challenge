@@ -38,3 +38,36 @@ class Stage:
     '''
     def __init__(self) -> None:
         '''Initiate needed parameters'''
+
+
+    @staticmethod
+    def is_out_of_boundaries(position: tuple) -> bool:
+        '''Any movement that would result in the robot falling from the table
+        must be prevented, however further valid movement commands must still be allowed.
+        '''
+
+
+    def place(self, position: tuple, direction: str) -> tuple:
+        '''PLACE will put the toy robot on the table in position X,Y
+        and facing NORTH, SOUTH, EAST or WEST.
+        '''
+
+
+    def move(self) -> tuple:
+        '''MOVE will move the toy robot one unit
+        forward in the direction it is currently facing.'''
+
+
+    def left(self)->str:
+        '''LEFT will rotate the robot 90 degrees in the specified direction
+        without changing the position of the robot.'''
+
+
+    def right(self)->str:
+        '''RIGHT will rotate the robot 90 degrees in the specified direction
+        without changing the position of the robot.'''
+
+
+    def report(self)->str:
+        '''REPORT will announce the X,Y and F of the robot.
+        This can be in any form, but standard output is sufficient. '''
