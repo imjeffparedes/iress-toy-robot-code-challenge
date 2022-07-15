@@ -6,6 +6,8 @@ from stage import Stage
 from command_parser import parse_input
 
 
+stage = Stage()
+
 
 def process_input(parameters: tuple):
     keyword = parameters[0]
@@ -24,11 +26,6 @@ def process_input(parameters: tuple):
     elif keyword == 'REPORT':
         stage.report()
 
-
-
-## MAIN APPLICATION
-
-stage = Stage()
 
 def read_file_input():
     '''Read all commands per line
@@ -54,6 +51,7 @@ def read_standard_input():
         read_standard_input()
 
 
+## MAIN APPLICATION
 if __name__ == '__main__':
     if len(sys.argv) != 1:
         read_file_input()
