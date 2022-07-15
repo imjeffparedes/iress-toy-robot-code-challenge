@@ -26,7 +26,7 @@ class Stage:
         y = position[1]
         table_width = TABLE_DIMENSIONS[0]
         table_height = TABLE_DIMENSIONS[1]
-        if (x < 0 or x > table_height) or (y < 0 or y > table_width):
+        if (x < 0 or x > table_width) or (y < 0 or y > table_height):
             return True
         return False
 
