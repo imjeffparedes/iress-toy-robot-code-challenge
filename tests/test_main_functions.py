@@ -5,7 +5,7 @@
 import sys
 import os
 sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/../src"))
-from game import get_place_args
+from command_parser import get_place_args
 
 
 def test_valid_place_input():
